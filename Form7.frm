@@ -1,9 +1,9 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Begin VB.Form Form1 
+Begin VB.Form Form7 
    AutoRedraw      =   -1  'True
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "姓名大乐斗 v1.4"
+   Caption         =   "姓名大乐斗 v1.4  试炼之塔"
    ClientHeight    =   7800
    ClientLeft      =   45
    ClientTop       =   390
@@ -15,21 +15,141 @@ Begin VB.Form Form1
    ScaleWidth      =   12795
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  '窗口缺省
-   Begin VB.CommandButton Command11 
-      Caption         =   "试炼之塔"
-      Height          =   495
-      Left            =   8880
-      TabIndex        =   53
-      Top             =   6840
-      Width           =   1335
-   End
-   Begin VB.CommandButton Command10 
-      Caption         =   "乐斗模式"
-      Height          =   495
-      Left            =   8880
-      TabIndex        =   52
-      Top             =   6240
-      Width           =   1335
+   Begin VB.Frame Frame1 
+      Caption         =   "物品栏"
+      Height          =   1575
+      Left            =   8400
+      TabIndex        =   55
+      Top             =   6000
+      Width           =   2655
+      Begin VB.Label Label22 
+         AutoSize        =   -1  'True
+         BackColor       =   &H0000FF00&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "使用"
+         Height          =   240
+         Index           =   1
+         Left            =   2160
+         TabIndex        =   66
+         Top             =   1080
+         Width           =   420
+      End
+      Begin VB.Label Label19 
+         AutoSize        =   -1  'True
+         Caption         =   "0"
+         DataSource      =   "Adodc1"
+         Height          =   180
+         Index           =   7
+         Left            =   1800
+         TabIndex        =   65
+         Top             =   1080
+         Width           =   90
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "复活"
+         Height          =   180
+         Index           =   6
+         Left            =   960
+         TabIndex        =   64
+         Top             =   1080
+         Width           =   360
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "复活药"
+         Height          =   180
+         Index           =   5
+         Left            =   120
+         TabIndex        =   63
+         Top             =   1080
+         Width           =   540
+      End
+      Begin VB.Label Label22 
+         AutoSize        =   -1  'True
+         BackColor       =   &H0000FF00&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "使用"
+         Height          =   240
+         Index           =   0
+         Left            =   2160
+         TabIndex        =   62
+         Top             =   720
+         Width           =   420
+      End
+      Begin VB.Line Line2 
+         X1              =   0
+         X2              =   2640
+         Y1              =   960
+         Y2              =   960
+      End
+      Begin VB.Label Label19 
+         AutoSize        =   -1  'True
+         Caption         =   "0"
+         DataSource      =   "Adodc1"
+         Height          =   180
+         Index           =   6
+         Left            =   1800
+         TabIndex        =   61
+         Top             =   720
+         Width           =   90
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "HP+50"
+         Height          =   180
+         Index           =   4
+         Left            =   960
+         TabIndex        =   60
+         Top             =   720
+         Width           =   450
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "小红药"
+         Height          =   180
+         Index           =   3
+         Left            =   120
+         TabIndex        =   59
+         Top             =   720
+         Width           =   540
+      End
+      Begin VB.Line Line1 
+         X1              =   0
+         X2              =   2760
+         Y1              =   600
+         Y2              =   600
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "数量"
+         Height          =   180
+         Index           =   2
+         Left            =   1680
+         TabIndex        =   58
+         Top             =   360
+         Width           =   360
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "效果"
+         Height          =   180
+         Index           =   1
+         Left            =   960
+         TabIndex        =   57
+         Top             =   360
+         Width           =   360
+      End
+      Begin VB.Label Label21 
+         AutoSize        =   -1  'True
+         Caption         =   "名称"
+         Height          =   180
+         Index           =   0
+         Left            =   240
+         TabIndex        =   56
+         Top             =   360
+         Width           =   360
+      End
    End
    Begin VB.CommandButton Command9 
       Caption         =   "商店"
@@ -103,7 +223,7 @@ Begin VB.Form Form1
       Width           =   255
    End
    Begin VB.CommandButton Command7 
-      Caption         =   "复位"
+      Caption         =   "放弃"
       Height          =   375
       Left            =   4680
       TabIndex        =   28
@@ -141,7 +261,7 @@ Begin VB.Form Form1
       Top             =   6120
    End
    Begin VB.CommandButton Command2 
-      Caption         =   "结束"
+      Caption         =   "返回"
       Height          =   375
       Left            =   7080
       TabIndex        =   23
@@ -276,6 +396,63 @@ Begin VB.Form Form1
       Top             =   720
       Width           =   855
    End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "层"
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   6
+      Left            =   6000
+      TabIndex        =   54
+      Top             =   240
+      Width           =   315
+   End
+   Begin VB.Label Label19 
+      AutoSize        =   -1  'True
+      DataSource      =   "Adodc1"
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   5
+      Left            =   5280
+      TabIndex        =   53
+      Top             =   240
+      Width           =   165
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "第"
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   5
+      Left            =   4560
+      TabIndex        =   52
+      Top             =   240
+      Width           =   315
+   End
    Begin VB.Label Label19 
       AutoSize        =   -1  'True
       DataSource      =   "Adodc1"
@@ -387,7 +564,7 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label17 
       AutoSize        =   -1  'True
-      Caption         =   "对手"
+      Caption         =   "守塔人"
       BeginProperty Font 
          Name            =   "黑体"
          Size            =   15
@@ -398,10 +575,10 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   10920
+      Left            =   10440
       TabIndex        =   38
       Top             =   240
-      Width           =   630
+      Width           =   945
    End
    Begin VB.Label Label16 
       AutoSize        =   -1  'True
@@ -558,7 +735,7 @@ Begin VB.Form Form1
       Width           =   360
    End
 End
-Attribute VB_Name = "Form1"
+Attribute VB_Name = "Form7"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -583,11 +760,11 @@ Dim sd(1) As Integer '速度值
 Dim mz(1) As Integer '命中值
 Dim yq(1) As Integer '运气值
 Dim Tur As Integer '静态变量
-Dim win As Integer
 Dim Flag As Integer    '攻击方式产生概率
 Dim Die
-Dim hp0, Jc                '金蝉脱壳
-Dim hpc1, hpc2         '回光返照
+Dim hp0, Jc                 '金蝉脱壳
+Dim hpc1, hpc2           '回光返照
+Dim slta
 Dim Round1, Round2  '使用八门遁甲死亡倒计时
 Dim R1 As Boolean, R2 As Boolean   '启动死亡倒计时
 Dim SP(0 To 60)       '各技能使用上限
@@ -598,6 +775,7 @@ Private Sub Command1_Click()
 Randomize
 Timer1.Enabled = True
 Command9.Enabled = False
+
 R1 = False
 R2 = False
 SP(1) = 0
@@ -623,7 +801,7 @@ d0 = "[" & Text2 & "]" & "向" & "自己"
 For I = 1 To Len(Trim(Text1))
 lngReturn = CLng("&h" & Hex((AscW(Mid(Text1, I, 1)))))
 If I = 1 Then
-Text4(0).Text = Mid(lngReturn, 1, 3)
+'Text4(0).Text = Mid(lngReturn, 1, 3)
 Text4(1).Text = Val(Mid(lngReturn, 3, 2) + 30)
 Text4(4).Text = Val(Mid(lngReturn, 2, 2) + 50)
 End If
@@ -633,18 +811,18 @@ Text4(3).Text = Val(Mid(lngReturn, 2, 2) + 40)
 End If
 Next I
 
-For I = 1 To Len(Trim(Text2))
-lngReturn = CLng("&h" & Hex((AscW(Mid(Text2, I, 1)))))
-If I = 1 Then
-Text5(0).Text = Mid(lngReturn, 1, 3)
-Text5(1).Text = Val(Mid(lngReturn, 3, 2) + 30)
-Text5(4).Text = Val(Mid(lngReturn, 2, 2) + 50)
-End If
-If I = 2 Then
-Text5(2).Text = Val(Mid(lngReturn, 1, 2) + 30)
-Text5(3).Text = Val(Mid(lngReturn, 2, 2) + 40)
-End If
-Next I
+'For I = 1 To Len(Trim(Text2))
+'lngReturn = CLng("&h" & Hex((AscW(Mid(Text2, I, 1)))))
+'If I = 1 Then
+'Text5(0).Text = Mid(lngReturn, 1, 3)
+'Text5(1).Text = Val(Mid(lngReturn, 3, 2) + 30)
+'Text5(4).Text = Val(Mid(lngReturn, 2, 2) + 50)
+'End If
+'If I = 2 Then
+'Text5(2).Text = Val(Mid(lngReturn, 1, 2) + 30)
+'Text5(3).Text = Val(Mid(lngReturn, 2, 2) + 40)
+'End If
+'Next I
 Text4(5).Text = Int(Rnd * 100)
 Text5(5).Text = Int(Rnd * 100)
 
@@ -668,18 +846,9 @@ Command9.Enabled = False
 End If
 End Sub
 
-Private Sub Command10_Click()
-Unload Me
-Form9.Show
-End Sub
-
-Private Sub Command11_Click()
-Unload Me
-Form7.Show
-End Sub
-
 Private Sub Command2_Click()
 Unload Me
+Form1.Show
 End Sub
 
 Private Sub Command3_Click()          '减慢
@@ -698,10 +867,12 @@ Private Sub Command6_Click()          '暂停
 Timer1.Interval = 0
 End Sub
 
-Private Sub Command7_Click()                   '复位键
-MsgBox "请重新输入对手姓名", , "提示"
-Text2.Text = ""
-Text3.Text = ""
+Private Sub Command7_Click()
+Timer1.Enabled = False
+MsgBox "您放弃了挑战，掉到第一层！"
+Label19(5) = 1
+Call Save
+Call Form_Load
 End Sub
 
 Private Sub Command8_Click()          '作弊开启
@@ -717,6 +888,48 @@ End Sub
 Private Sub Command9_Click()
 Unload Me
 Form10.Show
+End Sub
+
+Private Sub Label22_Click(Index As Integer)
+    Select Case Index
+        Case 0: Cmd0
+        'Case 1: Cmd1
+    End Select
+End Sub
+
+Private Sub Cmd0()
+If Label19(6) > 0 Then
+Text4(0).Text = Val(Text4(0)) + 50
+Label19(6) = Label19(6) - 1
+Text3.Text = Text3.Text + vbCrLf + "[" + Text1.Text + "] 使用了小红药！HP+50！" + vbCrLf
+Else
+MsgBox "你的小红药没有剩余！"
+End If
+End Sub
+Private Sub Cmd1()
+If Label19(7) > 0 Then
+Dim lngReturn As Long
+Dim I
+
+For I = 1 To Len(Trim(Text1))
+lngReturn = CLng("&h" & Hex((AscW(Mid(Text1, I, 1)))))
+If I = 1 Then
+Text4(0).Text = Mid(lngReturn, 1, 3)
+Text4(1).Text = Val(Mid(lngReturn, 3, 2) + 30)
+Text4(4).Text = Val(Mid(lngReturn, 2, 2) + 50)
+End If
+If I = 2 Then
+Text4(2).Text = Val(Mid(lngReturn, 1, 2) + 30)
+Text4(3).Text = Val(Mid(lngReturn, 2, 2) + 40)
+End If
+Next I
+
+Label19(7) = Label19(7) - 1
+Text3.Text = Text3.Text + vbCrLf + "[" + Text1.Text + "] 使用了复活药！原地满血复活！" + vbCrLf
+Timer1.Enabled = True
+Else
+MsgBox "你的复活药没有剩余！"
+End If
 End Sub
 
 Private Sub Text2_LostFocus()
@@ -739,6 +952,7 @@ MsgBox "对手名至少为两个字！请重新输入！"
 Text2.Text = ""
 End If
 End Sub
+
 Private Sub Timer1_Timer()
 a = Int(Rnd * 20)
 b = Int(Rnd * 20)
@@ -759,6 +973,7 @@ Text3.Text = Text3.Text + "[" & Text1 & "]" & "被打败！"
 Timer1.Enabled = False
 Command9.Enabled = True
 Label19(3).Caption = Val(Label19(3)) + 1 '计算失败
+Call fail
 End If
 Exit Sub
 
@@ -775,6 +990,7 @@ Text3.Text = Text3.Text + "[" & Text2 & "]" & "被打败！"
 Timer1.Enabled = False
 Command9.Enabled = True
 Label19(1).Caption = Val(Label19(1)) + 1 '计算胜场
+Call win
 Call Lv
 End If
 Exit Sub
@@ -795,6 +1011,7 @@ Round2 = Round2 - 1
     If Round2 = 1 Then
     Text3.Text = Text3.Text + "[" & Text2 & "]" & "八门遁甲使用时间过长，功力枯竭身亡！"
     Label19(1) = Label19(1) + 1                                   ' 自爆身亡算失败
+    Call win
     Call Lv
     Timer1.Enabled = False
     Command9.Enabled = True
@@ -824,6 +1041,7 @@ Round1 = Round1 - 1
     Timer1.Enabled = False
     Command9.Enabled = True
     Label19(3).Caption = Val(Label19(3)) + 1
+    Call fail
     Exit Sub
 End If
 End If
@@ -846,8 +1064,8 @@ End If
 End Sub
 
 Private Sub Form_Load()
-Dim I
-MsgBox "欢迎游戏姓名大乐斗 v1.4，请输入对手姓名后开始游戏~", , "温馨提示"
+Dim J
+MsgBox "欢迎来到试炼之塔~", , "温馨提示"
 Randomize
 
 Label19(0).Caption = ID
@@ -860,6 +1078,9 @@ Label19(1).DataField = ""
 Label19(2).DataField = ""
 Label19(3).DataField = ""
 Label19(4).DataField = ""
+Label19(5).DataField = ""
+Label19(6).DataField = ""
+Label19(7).DataField = ""
 'On Error Resume Next
 Adodc1.Recordset.MoveFirst
 Adodc1.Recordset.Find "账号=" & Label19(0)
@@ -867,14 +1088,49 @@ Label19(1).Caption = Adodc1.Recordset!胜场
 Label19(2).Caption = Adodc1.Recordset!等级
 Label19(3).Caption = Adodc1.Recordset!失败
 Label19(4).Caption = Adodc1.Recordset!金钱
+Label19(5).Caption = Adodc1.Recordset!试炼之塔
+Label19(6).Caption = Adodc1.Recordset!小红药
+Label19(7).Caption = Adodc1.Recordset!复活药
+Text1.Text = Player1
+Dim lngReturn As Long
+Dim I
 
+For I = 1 To Len(Trim(Text1))
+lngReturn = CLng("&h" & Hex((AscW(Mid(Text1, I, 1)))))
+If I = 1 Then
+Text4(0).Text = Mid(lngReturn, 1, 3)
+Text4(1).Text = Val(Mid(lngReturn, 3, 2) + 30)
+Text4(4).Text = Val(Mid(lngReturn, 2, 2) + 50)
+End If
+If I = 2 Then
+Text4(2).Text = Val(Mid(lngReturn, 1, 2) + 30)
+Text4(3).Text = Val(Mid(lngReturn, 2, 2) + 40)
+End If
+Next I
+
+Text2.Text = ""
+Text5(0).Text = ""
+Text5(1).Text = ""
+Text5(2).Text = ""
+Text5(3).Text = ""
+Text5(4).Text = ""
 If Label19(1) < 3 Then Lv1 = 1
 If Label19(1) >= 3 And Label19(1) < 10 Then Lv1 = 2
 If Label19(1) >= 10 And Label19(1) < 20 Then Lv1 = 3
 If Label19(1) >= 20 Then Lv1 = 4
 Label19(2) = Lv1
 Lv2 = 1
-Money = Val(Label19(4))
+slta = Label19(5)
+If slta = 1 Then Call slta1
+If slta = 2 Then Call slta2
+If slta = 3 Then Call slta3
+If slta = 4 Then Call slta4
+If slta = 5 Then Call slta5
+If slta = 6 Then Call slta6
+If slta = 7 Then Call slta7
+If slta = 8 Then Call slta8
+If slta = 9 Then Call slta9
+If slta = 10 Then Call slta10
 
 Text1.Locked = True
 Text3.Locked = True
@@ -890,16 +1146,15 @@ Text5(2).Locked = True
 Text5(3).Locked = True
 Text5(4).Locked = True
 Text5(5).Locked = True
-Text1.Text = Player1
 a = Int(Rnd * 10)
 b = Int(Rnd * 10)
 Flag = Int(Rnd * 100)
 
 Text3.ForeColor = vbBlue
-For I = 0 To 5
-Text4(I).ForeColor = vbRed
-Text5(I).ForeColor = vbRed
-Next I
+For J = 0 To 5
+Text4(J).ForeColor = vbRed
+Text5(J).ForeColor = vbRed
+Next J
 End Sub
 
 Function Skill(Fis1 As Integer, Fis2 As Integer, who As Integer) '攻击方式
@@ -1047,21 +1302,6 @@ ElseIf K1 = 6 Then                                       '金蝉脱壳回复血量
 If Lv = 1 Then hp0 = 20
 If Lv = 2 Then hp0 = 30
 If Lv >= 3 Then hp0 = 40
-
-ElseIf K1 = 7 Then                                            '回光返照提升属性值
-If Lv = 1 Then f = Val(Int(Rnd * 10))
-If Lv = 2 Then f = Val(Int(Rnd * 13 + 2))
-If Lv >= 3 Then f = Val(Int(Rnd * 15 + 5))
-
-ElseIf K1 = 8 Then                                            '回光返照触发血量
-If Lv = 1 Then hpc1 = 15
-If Lv = 2 Then hpc2 = 17
-If Lv >= 3 Then hpc2 = 20
-
-ElseIf K1 = 9 Then                                            '回光返照触发血量
-If Lv = 1 Then hpc1 = 15
-If Lv = 2 Then hpc2 = 17
-If Lv >= 3 Then hpc2 = 20
 End If
 End Function
 
@@ -1168,17 +1408,146 @@ Label19(2) = Lv1
 Money = Money + Int(Rnd * 40 + 10)
 Label19(4).Caption = Money
 End Sub
+Public Sub win()
+Label19(5).Caption = Val(Label19(5)) + 1
+slta = Label19(5)
+If slta <= 10 Then
+MsgBox "恭喜您挑战成功，进入下一层"
+If slta = 1 Then Call slta1
+If slta = 2 Then Call slta2
+If slta = 3 Then Call slta3
+If slta = 4 Then Call slta4
+If slta = 5 Then Call slta5
+If slta = 6 Then Call slta6
+If slta = 7 Then Call slta7
+If slta = 8 Then Call slta8
+If slta = 9 Then Call slta9
+If slta = 10 Then Call slta10
+Else
+MsgBox "恭喜您挑战成功，奖励5000金币，小红药10个！复活药（绝版）1个！"
+Label19(5) = 1
+Label19(6) = Label19(6) + 10
+Label19(7) = Label19(7) + 1
+Money = Money + 5000
+Label19(4).Caption = Money
+Call Save
+Call Form_Load
+End If
+End Sub
+Public Sub fail()
+If MsgBox("是否使用复活药", vbYesNo, "提示") = vbYes Then
+Call Cmd1
+Else
+MsgBox "挑战失败，掉回第一层"
+Label19(5) = 1
+Call Save
+Call Form_Load
+End If
+End Sub
+Public Sub slta1()
+Text2.Text = "刘杰容"
+Text3.Text = "欢迎来到试炼之塔第一层，守卫者是刘杰容，属性超低，绝对可以秒杀！！（温馨提示：练级刷钱就找他！）"
+Text5(0).Text = 50
+Text5(1).Text = 20
+Text5(2).Text = 10
+Text5(3).Text = 15
+Text5(4).Text = 14
+End Sub
+Public Sub slta2()
+Text2.Text = "张荣佳"
+Text3.Text = "欢迎来到试炼之塔第二层，守卫者是张荣佳童鞋，弱于超人的属性，相信你不会有问题！！"
+Text5(0).Text = 100
+Text5(1).Text = 50
+Text5(2).Text = 10
+Text5(3).Text = 42
+Text5(4).Text = 41
+End Sub
+Public Sub slta3()
+Text2.Text = "赵俊杰"
+Text3.Text = "欢迎来到试炼之塔第三层，守卫者是赵俊杰，完完全全的一个肉盾，除了血厚，其他属性值均为0，不会对你造成任何伤害！通过只是时间问题！！"
+Text5(0).Text = 2500
+Text5(1).Text = 0
+Text5(2).Text = 0
+Text5(3).Text = 0
+Text5(4).Text = 0
+End Sub
+Public Sub slta4()
+Text2.Text = "陈谊明"
+Text3.Text = "欢迎来到试炼之塔第四层，守卫者是小明，正常人属性！！"
+Text5(0).Text = 300
+Text5(1).Text = 100
+Text5(2).Text = 20
+Text5(3).Text = 50
+Text5(4).Text = 50
+End Sub
+Public Sub slta5()
+Text2.Text = "黄晓剑"
+Text3.Text = "欢迎来到试炼之塔第五层，守卫者是小贱，超高攻击属性，小心被秒杀！！"
+Text5(0).Text = 100
+Text5(1).Text = 300
+Text5(2).Text = 100
+Text5(3).Text = 50
+Text5(4).Text = 50
+End Sub
+Public Sub slta6()
+Text2.Text = "赖鹏津"
+Text3.Text = "欢迎来到试炼之塔第六层，守卫者是小赖皮，超高防御，超厚血量，但是没有攻击力，加强型坦克！！"
+Text5(0).Text = 2000
+Text5(1).Text = 0
+Text5(2).Text = 500
+Text5(3).Text = 0
+Text5(4).Text = 0
+End Sub
+Public Sub slta7()
+Text2.Text = "梅震坤"
+Text3.Text = "欢迎来到试炼之塔第七层，守卫者是煤老板，超于常人的属性！！"
+Text5(0).Text = 500
+Text5(1).Text = 200
+Text5(2).Text = 200
+Text5(3).Text = 50
+Text5(4).Text = 50
+End Sub
+Public Sub slta8()
+Text2.Text = "禤嘉文"
+Text3.Text = "欢迎来到试炼之塔第八层，守卫者是小禤，速度超快！！（速度快有什么用）"
+Text5(0).Text = 300
+Text5(1).Text = 200
+Text5(2).Text = 100
+Text5(3).Text = 5000
+Text5(4).Text = 50
+End Sub
+Public Sub slta9()
+Text2.Text = "范振威"
+Text3.Text = "欢迎来到试炼之塔第九层，守卫者是小猫，准Boss级别！！"
+Text5(0).Text = 3000
+Text5(1).Text = 100
+Text5(2).Text = 200
+Text5(3).Text = 50
+Text5(4).Text = 50
+End Sub
+Public Sub slta10()
+Text2.Text = "邓国雄"
+Text3.Text = "欢迎来到试炼之塔第十层，守卫者是神·群主大人，创世神级别！！最后一层了，打赢他就能得到丰厚奖励！！"
+Text5(0).Text = 5000
+Text5(1).Text = 500
+Text5(2).Text = 500
+Text5(3).Text = 500
+Text5(4).Text = 500
+End Sub
 
 Private Sub Form_Unload(Cancel As Integer) '卸载窗体事件
+Timer1.Enabled = False
+On Error Resume Next
+Call Save
+End Sub
+
+Private Sub Save()
 Dim a As String
 Dim b As String
 'a = "update 注册 set 胜场= '" & Label19(1) & "' where 账号=" & Val(Label19(0))
-a = "update 注册 set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
+a = "update 注册 set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',试炼之塔='" & Label19(5) & "',小红药='" & Label19(6) & "',复活药='" & Label19(7) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
 Call CnSql(a, 2)
 b = "select * from 注册 where 账号=" & Val(Label19(0))
 Call CnSql(b, 1)
-
 End Sub
-
-
 
