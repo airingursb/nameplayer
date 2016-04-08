@@ -1,128 +1,121 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   ClientHeight    =   8070
+   AutoRedraw      =   -1  'True
+   ClientHeight    =   7800
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   12990
+   ClientWidth     =   12795
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8070
-   ScaleWidth      =   12990
+   ScaleHeight     =   7800
+   ScaleWidth      =   12795
    StartUpPosition =   3  '窗口缺省
    Begin VB.CommandButton Command8 
       Height          =   180
       Left            =   12000
-      TabIndex        =   30
+      TabIndex        =   29
       Top             =   6960
       Width           =   255
    End
    Begin VB.CommandButton Command7 
-      Caption         =   "再次战斗"
-      Height          =   615
-      Left            =   1920
-      TabIndex        =   29
-      Top             =   5640
-      Width           =   1095
+      Caption         =   "<"
+      Height          =   375
+      Left            =   4680
+      TabIndex        =   28
+      Top             =   6960
+      Width           =   615
    End
    Begin VB.CommandButton Command6 
-      Caption         =   "暂停"
+      Caption         =   " ‖ "
       Height          =   375
-      Left            =   8160
-      TabIndex        =   28
-      Top             =   5760
+      Left            =   5880
+      TabIndex        =   27
+      Top             =   6960
       Width           =   615
    End
    Begin VB.CommandButton Command5 
-      Caption         =   "快"
+      Caption         =   "》"
       Height          =   375
-      Left            =   7200
-      TabIndex        =   27
-      Top             =   5760
-      Width           =   615
-   End
-   Begin VB.CommandButton Command4 
-      Caption         =   "中"
-      Height          =   375
-      Left            =   6360
+      Left            =   7080
       TabIndex        =   26
-      Top             =   5760
+      Top             =   6240
       Width           =   615
    End
    Begin VB.CommandButton Command3 
-      Caption         =   "慢"
+      Caption         =   "《"
       Height          =   375
-      Left            =   5520
+      Left            =   4680
       TabIndex        =   25
-      Top             =   5760
+      Top             =   6240
       Width           =   615
    End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   2000
-      Left            =   4080
-      Top             =   4560
+      Left            =   11880
+      Top             =   6120
    End
    Begin VB.CommandButton Command2 
-      Caption         =   "退出游戏"
-      Height          =   615
-      Left            =   360
+      Caption         =   "■"
+      Height          =   375
+      Left            =   7080
       TabIndex        =   23
-      Top             =   6840
-      Width           =   1095
+      Top             =   6960
+      Width           =   615
    End
    Begin VB.CommandButton Command1 
-      Caption         =   "开始战斗"
-      Height          =   615
-      Left            =   360
+      Caption         =   "> "
+      Height          =   375
+      Left            =   5880
       TabIndex        =   22
-      Top             =   5640
-      Width           =   1095
+      Top             =   6240
+      Width           =   615
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   5
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   21
-      Top             =   4680
+      Top             =   4920
       Width           =   855
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   4
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   20
-      Top             =   3840
+      Top             =   4200
       Width           =   855
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   3
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   19
-      Top             =   3000
+      Top             =   3480
       Width           =   855
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   2
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   18
-      Top             =   2400
+      Top             =   2760
       Width           =   855
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   1
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   17
-      Top             =   1680
+      Top             =   2040
       Width           =   855
    End
    Begin VB.TextBox Text5 
       Height          =   375
       Index           =   0
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   16
-      Top             =   960
+      Top             =   1320
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -130,7 +123,7 @@ Begin VB.Form Form1
       Index           =   5
       Left            =   120
       TabIndex        =   15
-      Top             =   4680
+      Top             =   5040
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -138,7 +131,7 @@ Begin VB.Form Form1
       Index           =   4
       Left            =   120
       TabIndex        =   14
-      Top             =   3840
+      Top             =   4320
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -146,7 +139,7 @@ Begin VB.Form Form1
       Index           =   3
       Left            =   120
       TabIndex        =   13
-      Top             =   3000
+      Top             =   3600
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -154,7 +147,7 @@ Begin VB.Form Form1
       Index           =   2
       Left            =   120
       TabIndex        =   12
-      Top             =   2400
+      Top             =   2880
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -162,7 +155,7 @@ Begin VB.Form Form1
       Index           =   1
       Left            =   120
       TabIndex        =   11
-      Top             =   1680
+      Top             =   2160
       Width           =   855
    End
    Begin VB.TextBox Text4 
@@ -170,101 +163,212 @@ Begin VB.Form Form1
       Index           =   0
       Left            =   120
       TabIndex        =   10
-      Top             =   960
+      Top             =   1440
       Width           =   855
    End
    Begin VB.TextBox Text3 
       Height          =   4935
-      Left            =   5640
+      Left            =   2640
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   9
-      Top             =   360
+      Top             =   720
       Width           =   6855
    End
    Begin VB.TextBox Text2 
       Height          =   375
-      Left            =   2160
+      Left            =   10920
       TabIndex        =   8
-      Top             =   360
+      Top             =   720
       Width           =   855
    End
    Begin VB.TextBox Text1 
       Height          =   375
       Left            =   120
       TabIndex        =   7
-      Top             =   360
+      Top             =   720
       Width           =   855
+   End
+   Begin VB.Label Label18 
+      AutoSize        =   -1  'True
+      Caption         =   "游戏选项："
+      Height          =   180
+      Left            =   3360
+      TabIndex        =   39
+      Top             =   7080
+      Width           =   900
+   End
+   Begin VB.Label Label17 
+      AutoSize        =   -1  'True
+      Caption         =   "Player2"
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   10440
+      TabIndex        =   38
+      Top             =   240
+      Width           =   1155
+   End
+   Begin VB.Label Label16 
+      AutoSize        =   -1  'True
+      Caption         =   "Player1"
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   240
+      TabIndex        =   37
+      Top             =   240
+      Width           =   1155
+   End
+   Begin VB.Label Label15 
+      AutoSize        =   -1  'True
+      Caption         =   "运气"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   36
+      Top             =   5040
+      Width           =   360
+   End
+   Begin VB.Label Label14 
+      AutoSize        =   -1  'True
+      Caption         =   "命中"
+      Height          =   225
+      Left            =   10200
+      TabIndex        =   35
+      Top             =   4320
+      Width           =   360
+   End
+   Begin VB.Label Label13 
+      AutoSize        =   -1  'True
+      Caption         =   "速度"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   34
+      Top             =   3600
+      Width           =   360
+   End
+   Begin VB.Label Label12 
+      AutoSize        =   -1  'True
+      Caption         =   "防御"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   33
+      Top             =   2880
+      Width           =   360
+   End
+   Begin VB.Label Label11 
+      AutoSize        =   -1  'True
+      Caption         =   "攻击"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   32
+      Top             =   2160
+      Width           =   360
+   End
+   Begin VB.Label Label10 
+      AutoSize        =   -1  'True
+      Caption         =   "HP值"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   31
+      Top             =   1440
+      Width           =   360
+   End
+   Begin VB.Label Label9 
+      AutoSize        =   -1  'True
+      Caption         =   "姓名"
+      Height          =   180
+      Left            =   10200
+      TabIndex        =   30
+      Top             =   840
+      Width           =   360
    End
    Begin VB.Label Label8 
+      AutoSize        =   -1  'True
       Caption         =   "游戏速度："
-      Height          =   495
-      Left            =   4320
+      Height          =   180
+      Left            =   3360
       TabIndex        =   24
-      Top             =   5760
-      Width           =   975
-   End
-   Begin VB.Line Line1 
-      X1              =   3600
-      X2              =   3600
-      Y1              =   360
-      Y2              =   8040
+      Top             =   6360
+      Width           =   900
    End
    Begin VB.Label Label7 
+      AutoSize        =   -1  'True
       Caption         =   "HP值"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   6
-      Top             =   960
-      Width           =   855
+      Top             =   1560
+      Width           =   360
    End
    Begin VB.Label Label6 
+      AutoSize        =   -1  'True
       Caption         =   "攻击"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   5
-      Top             =   1680
-      Width           =   855
+      Top             =   2280
+      Width           =   360
    End
    Begin VB.Label Label5 
+      AutoSize        =   -1  'True
       Caption         =   "速度"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   4
-      Top             =   3120
-      Width           =   855
+      Top             =   3720
+      Width           =   360
    End
    Begin VB.Label Label4 
+      AutoSize        =   -1  'True
       Caption         =   "命中"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   3
-      Top             =   3960
-      Width           =   855
+      Top             =   4440
+      Width           =   360
    End
    Begin VB.Label Label3 
+      AutoSize        =   -1  'True
       Caption         =   "运气"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   2
-      Top             =   4800
-      Width           =   855
+      Top             =   5160
+      Width           =   360
    End
    Begin VB.Label Label2 
+      AutoSize        =   -1  'True
       Caption         =   "防御"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   1
-      Top             =   2400
-      Width           =   855
+      Top             =   3000
+      Width           =   360
    End
    Begin VB.Label Label1 
+      AutoSize        =   -1  'True
       Caption         =   "姓名"
-      Height          =   375
-      Left            =   1080
+      Height          =   180
+      Left            =   1200
       TabIndex        =   0
-      Top             =   360
-      Width           =   855
+      Top             =   840
+      Width           =   360
    End
 End
 Attribute VB_Name = "Form1"
@@ -292,6 +396,7 @@ Dim Tur As Integer '静态变量
 
 
 Private Sub Command1_Click()
+Timer1.Interval = 1500
 Dim lngReturn As Long
 
 If Name_Do(Val(Len(Text1) + Len(Text2))) > 0 Then
@@ -335,16 +440,16 @@ Text5(5).Text = Int(Rnd * 100)
 
 Call sx(0, 0, 0)
 
-Text3.Text = "姓名大作战 VB版" & Label11 & vbCrLf & vbCrLf
+Text3.Text = "姓名大作战 VB版" & vbCrLf & vbCrLf
 Text3.Text = Text3.Text + Text1 & "  " & "HP：" & Text4(0) & "  " & "攻：" & Text4(1) & "  " & "防：" & Text4(2) & "  " & "速：" & Text4(3) & "  " & "技：" & Text4(4) & "  " & "运：" & Text4(5) & vbCrLf
 Text3.Text = Text3.Text + Text2 & "  " & "HP：" & Text5(0) & "  " & "攻：" & Text5(1) & "  " & "防：" & Text5(2) & "  " & "速：" & Text5(3) & "  " & "技：" & Text5(4) & "  " & "运：" & Text5(5) & vbCrLf & vbCrLf
 
-If Text4(5).Text > Text5(5).Text Then '战斗先机
+If (Text4(5).Text + Text4(3).Text) > (Text5(5).Text + Text5(3).Text) Then '战斗先机
 Tur = 2
-ElseIf Text4(5).Text < Text5(5).Text Then
+ElseIf (Text4(5).Text + Text4(3).Text) < (Text5(5).Text + Text5(3).Text) Then
 Tur = 1
 Else
-MsgBox "运气都一样，在来一次！", , "提示"
+MsgBox "无法确定先手，请再来一次！", , "提示"
 Text4(5).Text = Int(Rnd * 100)
 Text5(5).Text = Int(Rnd * 100)
 End If
@@ -357,16 +462,16 @@ End Sub
 
 
 Private Sub Command3_Click()          '减慢
-Timer1.Interval = 2000
+Timer1.Interval = Timer1.Interval - 500
 
 End Sub
 
 Private Sub Command4_Click()          '正常
-Timer1.Interval = 1500
+form2.Show
 End Sub
 
 Private Sub Command5_Click()          '加快
-Timer1.Interval = 1000
+Timer1.Interval = Timer1.Interval + 500
 End Sub
 
 Private Sub Command6_Click()          '暂停
@@ -383,11 +488,18 @@ End Sub
 
 Private Sub Command8_Click()          '作弊开启
 If Text1.Text = "邓国雄" Then
-Text4(0).Text = 500
-Text4(5).Text = 100
+Text4(0).Text = Text4(0).Text + 500
+ElseIf Text2.Text = "邓国雄" Then
+Text5(0).Text = Text5(0).Text + 500
+Else
+MsgBox "您无权使用作弊器！", , "警告"
 End If
 
 End Sub
+
+
+
+
 
 Private Sub Timer1_Timer()
 a = Int(Rnd * 20)
@@ -402,11 +514,11 @@ Text5(0) = 0
 Text3.Text = Text3.Text + "[" & Text2 & "]" & "被打败！"
 Timer1.Enabled = False
 Exit Sub
-ElseIf 10 > Text4(0) > 0 Then
+ElseIf 15 > Text4(0) > 0 Then   '由10上调15
 f = Val(Int(Rnd * 10))
 Text3.Text = Text3.Text + "[" & Text1 & "]" & "垂死挣扎，提升属性值" & f & "点"
 Call sx(f, 0, 0)
-ElseIf 10 > Text5(0) > 0 Then
+ElseIf 15 > Text5(0) > 0 Then   '由10上调15
 f = Val(Int(Rnd * 10))
 Text3.Text = Text3.Text + "[" & Text2 & "]" & "垂死挣扎，提升属性值" & f & "点"
 Call sx(f, 0, 1)
@@ -426,6 +538,20 @@ End If
 End Sub
 
 Private Sub Form_Load()
+MsgBox "欢迎游戏姓名大作战1.2，请在姓名框输入姓名后按播放键开始游戏~", , "温馨提示"
+Text3.Locked = True
+Text4(0).Locked = True
+Text4(1).Locked = True
+Text4(2).Locked = True
+Text4(3).Locked = True
+Text4(4).Locked = True
+Text4(5).Locked = True
+Text5(0).Locked = True
+Text5(1).Locked = True
+Text5(2).Locked = True
+Text5(3).Locked = True
+Text5(4).Locked = True
+Text5(5).Locked = True
 a = Int(Rnd * 10)
 b = Int(Rnd * 10)
 
@@ -467,15 +593,33 @@ Select Case who
 End Select
 
 ElseIf Val(Fis1 + a) < Val(Fis2 + b) Then
-e = "使用降龙十八掌，"
+e = "使用吸星大法，"
 Select Case who
        Case 2
-     e = e + "[" & Text2 & "]" & "功力下降两成"
-     Text5(0).Text = Val(Text5(0).Text) / 2
+     e = e + "[" & Text2 & "]" & "功力被吸走一成"
+     Text4(0).Text = Text4(0) + Val(Text5(0).Text) * 0.1
+     Text4(1).Text = Text4(1) + Val(Text5(1).Text) * 0.1
+     Text4(2).Text = Text4(2) + Val(Text5(2).Text) * 0.1
+     Text4(3).Text = Text4(3) + Val(Text5(3).Text) * 0.1
+     Text4(4).Text = Text4(4) + Val(Text5(4).Text) * 0.1
+     Text5(0).Text = Val(Text5(0).Text) * 0.9
+     Text5(1).Text = Text5(1) - 1
+     Text5(2).Text = Text5(2) - 1
+     Text5(3).Text = Text5(3) - 1
+     Text5(4).Text = Text5(4) - 1
 
-       Case 1
-     e = e + "[" & Text1 & "]" & "功力下降三成"
-     Text4(0).Text = Val(Text4(0).Text) / 2
+           Case 1
+     e = e + "[" & Text1 & "]" & "功力被吸走一成"
+     Text5(0).Text = Text5(0) + Val(Text4(0).Text) * 0.1
+     Text5(1).Text = Text5(1) + Val(Text4(1).Text) * 0.1
+     Text5(2).Text = Text5(2) + Val(Text4(2).Text) * 0.1
+     Text5(3).Text = Text5(3) + Val(Text4(3).Text) * 0.1
+     Text5(4).Text = Text5(4) + Val(Text4(4).Text) * 0.1
+     Text4(0).Text = Val(Text4(0).Text) * 0.9
+     Text4(1).Text = Text4(1) - 1
+     Text4(2).Text = Text4(2) - 1
+     Text4(3).Text = Text4(3) - 1
+     Text4(4).Text = Text4(4) - 1
 
 End Select
 Exit Function
@@ -502,7 +646,7 @@ Exit Function
 
 ElseIf b > a Then
 e = "发起攻击，"
-     f = Val(Int(Rnd * 20))
+     f = Val(Int(Rnd * 30))    '由20上调30
 Select Case who
        Case 2
 
@@ -618,7 +762,8 @@ End If
 Next i
 Name_Do = k + y + n
 End Function
+
 Private Sub Form_Unload(Cancel As Integer) '卸载窗体事件
-MsgBox "谢谢游戏！欢迎继续游玩！", , "提示"
+MsgBox "谢谢游戏！——Airing", , "提示"
 End Sub
 
