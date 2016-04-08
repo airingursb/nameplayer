@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form4 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "登录系统"
@@ -13,53 +12,6 @@ Begin VB.Form Form4
    ScaleHeight     =   4155
    ScaleWidth      =   5175
    ShowInTaskbar   =   0   'False
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   330
-      Left            =   0
-      Top             =   0
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   582
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "宋体"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
-   End
    Begin VB.Frame Frame1 
       Caption         =   "请输入账号和密码"
       Height          =   2895
@@ -92,6 +44,7 @@ Begin VB.Form Form4
          Width           =   1575
       End
       Begin VB.TextBox Text2 
+         DataField       =   "密码"
          DataSource      =   "Adodc1"
          Height          =   495
          IMEMode         =   3  'DISABLE
@@ -102,6 +55,7 @@ Begin VB.Form Form4
          Width           =   1815
       End
       Begin VB.TextBox Text1 
+         DataField       =   "账号"
          BeginProperty DataFormat 
             Type            =   0
             Format          =   "0"
@@ -177,7 +131,7 @@ Begin VB.Form Form4
    End
    Begin VB.Label Label3 
       AutoSize        =   -1  'True
-      Caption         =   "姓名大乐斗v1.4登录系统"
+      Caption         =   "姓名大乐斗登录系统"
       BeginProperty Font 
          Name            =   "隶书"
          Size            =   14.25
@@ -188,10 +142,10 @@ Begin VB.Form Form4
          Strikethrough   =   0   'False
       EndProperty
       Height          =   285
-      Left            =   720
+      Left            =   1200
       TabIndex        =   6
       Top             =   360
-      Width           =   3495
+      Width           =   2835
    End
 End
 Attribute VB_Name = "Form4"
@@ -201,32 +155,48 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim Connstring
-
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
 Private Sub Command1_Click()
+Call check
 If Trim(Text1.Text) = "Airing" And Trim(Text2.Text) = "071515" Then
 MsgBox "管理员登录成功！"
 Form3.Show
 Exit Sub
 End If
-On Error Resume Next
 Dim Name As String, Num As String
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Adodc1.Recordset.Find "账号=" & Text1.Text
-If Adodc1.Recordset.EOF Or Adodc1.Recordset!密码 <> Text2.Text Then
-    Text1.DataField = ""
-    Text2.DataField = ""
-    Text1.Text = ""
-    Text2.Text = ""
-    Adodc1.Recordset.MoveFirst
-    MsgBox "账号或密码错误！", vbOKOnly + vbCritical
-Else
-    MsgBox "登录成功！"
-    Player1 = Adodc1.Recordset!用户名
-    ID = Val(Text1.Text)
-    Form1.Show
-    Unload Me
-End If
+Dim Rs As ADODB.Recordset
+Dim strsql As String
+Dim temp As String
+Name = Text1.Text
+Num = Text2.Text
+Set Rs = New ADODB.Recordset
+    strsql = "select * from zc where 账号=" & Name & "  and 密码='" & Num & "'"
+    Rs.Open strsql, db, adOpenStatic, adLockReadOnly 'Open table "DBser"
+    If Rs.EOF Then
+        MsgBox "用户名或密码错误", vbCritical, "提示"
+    Else
+        ID = Name
+        Player1 = Rs.Fields("用户名").Value
+        Form1.Show
+    End If
+End Sub
+
+Private Sub check()
+Dim Rs As ADODB.Recordset
+Dim strsql As String
+Dim Name As String, Num As String
+Name = 3214555
+Num = 3214555
+Set Rs = New ADODB.Recordset
+    strsql = "select * from zc where 账号=" & Name & "  and 密码='" & Num & "'"
+    Rs.Open strsql, db, adOpenStatic, adLockReadOnly
+    If Rs.EOF Then
+        MsgBox "已是最新版本v1.5"
+    Else
+        MsgBox "已有更新，请去官网下载更新。"
+        Unload Me
+    End If
 End Sub
 
 Private Sub Command2_Click()
@@ -239,15 +209,15 @@ Unload Me
 End Sub
 
 Private Sub Form_Load()
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Text1.DataField = ""
-Text2.DataField = ""
-Text1.Text = ""
-Text2.Text = ""
-Adodc1.Recordset.MoveFirst
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "失败"
+End If
 End Sub
 
 Private Sub Label4_Click()

@@ -1,8 +1,8 @@
 VERSION 5.00
-Begin VB.Form Form8 
+Begin VB.Form Form11 
    AutoRedraw      =   -1  'True
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "姓名大乐斗  游客畅玩"
+   Caption         =   "姓名大乐斗 v1.5"
    ClientHeight    =   7800
    ClientLeft      =   45
    ClientTop       =   390
@@ -14,6 +14,23 @@ Begin VB.Form Form8
    ScaleWidth      =   12795
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  '窗口缺省
+   Begin VB.CommandButton Command9 
+      Caption         =   "商店"
+      Height          =   375
+      Left            =   1800
+      TabIndex        =   51
+      Top             =   1800
+      Width           =   495
+   End
+   Begin VB.CommandButton Command4 
+      Caption         =   "属性"
+      Enabled         =   0   'False
+      Height          =   375
+      Left            =   1800
+      TabIndex        =   44
+      Top             =   1080
+      Width           =   495
+   End
    Begin VB.CommandButton Command8 
       Height          =   180
       Left            =   12000
@@ -58,8 +75,8 @@ Begin VB.Form Form8
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   2000
-      Left            =   11880
-      Top             =   6120
+      Left            =   12240
+      Top             =   7320
    End
    Begin VB.CommandButton Command2 
       Caption         =   "返回"
@@ -196,26 +213,219 @@ Begin VB.Form Form8
       Top             =   720
       Width           =   855
    End
+   Begin VB.Label Label22 
+      AutoSize        =   -1  'True
+      Caption         =   "擂台战"
+      BeginProperty Font 
+         Name            =   "微软雅黑"
+         Size            =   21.75
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   585
+      Left            =   5040
+      TabIndex        =   62
+      Top             =   120
+      Width           =   1305
+   End
+   Begin VB.Label Label21 
+      AutoSize        =   -1  'True
+      Height          =   180
+      Index           =   4
+      Left            =   11280
+      TabIndex        =   61
+      Top             =   5880
+      Width           =   90
+   End
+   Begin VB.Label Label21 
+      AutoSize        =   -1  'True
+      Height          =   180
+      Index           =   3
+      Left            =   10440
+      TabIndex        =   60
+      Top             =   6600
+      Width           =   90
+   End
+   Begin VB.Label Label21 
+      AutoSize        =   -1  'True
+      Height          =   180
+      Index           =   2
+      Left            =   10200
+      TabIndex        =   59
+      Top             =   5880
+      Width           =   90
+   End
+   Begin VB.Label Label21 
+      AutoSize        =   -1  'True
+      Caption         =   "0"
+      Height          =   180
+      Index           =   1
+      Left            =   10440
+      TabIndex        =   58
+      Top             =   6240
+      Width           =   90
+   End
+   Begin VB.Label Label21 
+      AutoSize        =   -1  'True
+      Height          =   180
+      Index           =   0
+      Left            =   8880
+      TabIndex        =   57
+      Top             =   360
+      Width           =   90
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "ID："
+      Height          =   180
+      Index           =   9
+      Left            =   8400
+      TabIndex        =   56
+      Top             =   360
+      Width           =   360
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "金钱："
+      Height          =   180
+      Index           =   8
+      Left            =   10680
+      TabIndex        =   55
+      Top             =   5880
+      Width           =   540
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "失败："
+      Height          =   180
+      Index           =   7
+      Left            =   9840
+      TabIndex        =   54
+      Top             =   6600
+      Width           =   540
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "胜场："
+      Height          =   180
+      Index           =   6
+      Left            =   9840
+      TabIndex        =   53
+      Top             =   6240
+      Width           =   540
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "Lv："
+      Height          =   180
+      Index           =   5
+      Left            =   9840
+      TabIndex        =   52
+      Top             =   5880
+      Width           =   360
+   End
+   Begin VB.Label Label19 
+      AutoSize        =   -1  'True
+      DataSource      =   "Adodc1"
+      Height          =   180
+      Index           =   4
+      Left            =   1560
+      TabIndex        =   50
+      Top             =   5760
+      Width           =   90
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "金钱："
+      Height          =   180
+      Index           =   4
+      Left            =   960
+      TabIndex        =   49
+      Top             =   5760
+      Width           =   540
+   End
+   Begin VB.Label Label19 
+      AutoSize        =   -1  'True
+      DataSource      =   "Adodc1"
+      Height          =   180
+      Index           =   3
+      Left            =   840
+      TabIndex        =   48
+      Top             =   6480
+      Width           =   90
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "失败："
+      Height          =   180
+      Index           =   3
+      Left            =   240
+      TabIndex        =   47
+      Top             =   6480
+      Width           =   540
+   End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "Lv："
+      Height          =   180
+      Index           =   2
+      Left            =   240
+      TabIndex        =   46
+      Top             =   5760
+      Width           =   360
+   End
+   Begin VB.Label Label19 
+      AutoSize        =   -1  'True
+      DataSource      =   "Adodc1"
+      Height          =   180
+      Index           =   2
+      Left            =   720
+      TabIndex        =   45
+      Top             =   5760
+      Width           =   90
+   End
    Begin VB.Label Label20 
       AutoSize        =   -1  'True
       Caption         =   "ID："
       Height          =   180
       Index           =   1
       Left            =   1800
-      TabIndex        =   41
+      TabIndex        =   43
       Top             =   360
       Width           =   360
    End
+   Begin VB.Label Label20 
+      AutoSize        =   -1  'True
+      Caption         =   "胜场："
+      Height          =   180
+      Index           =   0
+      Left            =   240
+      TabIndex        =   42
+      Top             =   6120
+      Width           =   540
+   End
    Begin VB.Label Label19 
       AutoSize        =   -1  'True
-      Caption         =   "游客"
+      DataSource      =   "Adodc1"
+      Height          =   180
+      Index           =   1
+      Left            =   840
+      TabIndex        =   41
+      Top             =   6120
+      Width           =   90
+   End
+   Begin VB.Label Label19 
+      AutoSize        =   -1  'True
       DataSource      =   "Adodc1"
       Height          =   180
       Index           =   0
       Left            =   2400
       TabIndex        =   40
       Top             =   360
-      Width           =   360
+      Width           =   90
    End
    Begin VB.Label Label18 
       AutoSize        =   -1  'True
@@ -228,7 +438,7 @@ Begin VB.Form Form8
    End
    Begin VB.Label Label17 
       AutoSize        =   -1  'True
-      Caption         =   "Player2"
+      Caption         =   "擂主"
       BeginProperty Font 
          Name            =   "黑体"
          Size            =   15
@@ -239,14 +449,14 @@ Begin VB.Form Form8
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   10440
+      Left            =   10920
       TabIndex        =   38
       Top             =   240
-      Width           =   1155
+      Width           =   630
    End
    Begin VB.Label Label16 
       AutoSize        =   -1  'True
-      Caption         =   "Player1"
+      Caption         =   "玩家"
       Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "黑体"
@@ -261,7 +471,7 @@ Begin VB.Form Form8
       Left            =   240
       TabIndex        =   37
       Top             =   240
-      Width           =   1155
+      Width           =   630
    End
    Begin VB.Label Label15 
       AutoSize        =   -1  'True
@@ -274,8 +484,8 @@ Begin VB.Form Form8
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
-      Caption         =   "命中"
-      Height          =   225
+      Caption         =   "敏捷"
+      Height          =   180
       Left            =   10200
       TabIndex        =   35
       Top             =   4320
@@ -364,7 +574,7 @@ Begin VB.Form Form8
    End
    Begin VB.Label Label4 
       AutoSize        =   -1  'True
-      Caption         =   "命中"
+      Caption         =   "敏捷"
       Height          =   180
       Left            =   1200
       TabIndex        =   3
@@ -399,12 +609,16 @@ Begin VB.Form Form8
       Width           =   360
    End
 End
-Attribute VB_Name = "Form8"
+Attribute VB_Name = "Form11"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
+Dim Rs2 As ADODB.Recordset
+Dim fhy
 Dim a As Integer '左边随即优先攻击
 Dim b As Integer '右边随即优先攻击
 Dim k As Integer '攻击值数目
@@ -424,20 +638,33 @@ Dim sd(1) As Integer '速度值
 Dim mz(1) As Integer '命中值
 Dim yq(1) As Integer '运气值
 Dim Tur As Integer '静态变量
-Dim win As Integer
 Dim Flag As Integer    '攻击方式产生概率
+Dim Die
+Dim hp0, Jc                '金蝉脱壳
+Dim hpc1, hpc2         '回光返照
 Dim Round1, Round2  '使用八门遁甲死亡倒计时
 Dim R1 As Boolean, R2 As Boolean   '启动死亡倒计时
 Dim SP(0 To 60)       '各技能使用上限
 Dim Connstring
+Dim Money2
 
 Private Sub Command1_Click()
+If Money >= 100 And MsgBox("您确定花费100金币购买挑战资格吗？", vbYesNo, "提示") = vbYes Then
+    Money = Money - 100
+    Label19(4).Caption = Money
+Else
+    MsgBox "您没有挑战资格！", , "提示"
+    Exit Sub
+End If
 Randomize
 Timer1.Enabled = True
+Command9.Enabled = False
 R1 = False
 R2 = False
 SP(1) = 0
 SP(2) = 0
+Lv1 = Val(Label19(2))
+Lv2 = 1
 Timer1.Interval = 500
 Dim lngReturn As Long
 Dim I
@@ -498,20 +725,21 @@ Text4(5).Text = Int(Rnd * 100)
 Text5(5).Text = Int(Rnd * 100)
 End If
 Timer1.Enabled = True
+Command9.Enabled = False
 End If
 End Sub
 
 Private Sub Command2_Click()
 Unload Me
-Form4.Show
+Form1.Show
 End Sub
 
 Private Sub Command3_Click()          '减慢
 Timer1.Interval = Timer1.Interval - 500
 End Sub
 
-Private Sub Command4_Click()          '正常
-Form2.Show
+Private Sub Command4_Click()          '属性栏
+Form6.Show
 End Sub
 
 Private Sub Command5_Click()          '加快
@@ -538,29 +766,83 @@ MsgBox "您无权使用作弊器！", , "警告"
 End If
 End Sub
 
+Private Sub Command9_Click()
+Unload Me
+Form10.Show
+End Sub
+
+Private Sub Text2_LostFocus()
+Dim Sum&
+Dim c
+Dim Char
+Sum = 0
+For c = 1 To Len(Text2.Text)
+Char = Mid(Text2.Text, c, 1)
+If (AscW(Char) > -40870 And AscW(Char) < -19967) Or (AscW(Char) < 40870 And AscW(Char) > 19967) Then
+Sum = Sum + 1
+End If
+Next c
+If Sum = 0 Then
+MsgBox "对手名必须为汉字！"
+Text2.Text = ""
+End If
+If Sum = 1 Then
+MsgBox "对手名至少为两个字！请重新输入！"
+Text2.Text = ""
+End If
+End Sub
+
 Private Sub Timer1_Timer()
 a = Int(Rnd * 20)
 b = Int(Rnd * 20)
 Flag = Int(Rnd * 100)
-
+Die = Int(Rnd * 100) '金蝉脱壳释放几率
+Call fLv(8, Lv1)
+Call fLv(9, Lv2)
 If Text4(0) <= 0 Then
+Call fLv(5, Lv1)
+Call fLv(6, Lv1)
+If Die >= Jc And SP(3) < 1 Then
+Text4(0) = hp0
+Text3.Text = Text3.Text + "[" & Text1 & "]" & "使用金蝉脱壳！" + vbCrLf
+SP(3) = SP(3) + 1
+Else
 Text4(0) = 0
 Text3.Text = Text3.Text + "[" & Text1 & "]" & "被打败！"
 Timer1.Enabled = False
+Command9.Enabled = True
+Label19(3).Caption = Val(Label19(3)) + 1 '计算失败
+Label21(1).Caption = Val(Label21(1)) + 1
+Call Lv02
+Call fail
+End If
 Exit Sub
 
 ElseIf Text5(0) <= 0 Then
+Call fLv(5, Lv2)
+Call fLv(6, Lv2)
+If Die >= Jc And SP(4) < 1 Then
+Text5(0) = hp0
+Text3.Text = Text3.Text + "[" & Text2 & "]" & "使用金蝉脱壳！" + vbCrLf
+SP(4) = SP(4) + 1
+Else
 Text5(0) = 0
 Text3.Text = Text3.Text + "[" & Text2 & "]" & "被打败！"
 Timer1.Enabled = False
+Command9.Enabled = True
+Label19(1).Caption = Val(Label19(1)) + 1 '计算胜场
+Label21(3).Caption = Val(Label21(3)) + 1
+Call Lv
+Call win
+End If
 Exit Sub
-ElseIf 15 > Text4(0) > 0 Then
 
-f = Val(Int(Rnd * 10))
+ElseIf hpc1 > Text4(0) > 0 Then
+Call fLv(7, Lv1)
 Text3.Text = Text3.Text + "[" & Text1 & "]" & "垂死挣扎，提升属性值" & f & "点"
 Call sx(f, 0, 0)
-ElseIf 15 > Text5(0) > 0 Then
-f = Val(Int(Rnd * 10))
+ElseIf hpc2 > Text5(0) > 0 Then
+Call fLv(7, Lv2)
 Text3.Text = Text3.Text + "[" & Text2 & "]" & "垂死挣扎，提升属性值" & f & "点"
 Call sx(f, 0, 1)
 
@@ -570,7 +852,12 @@ If R2 = True Then
 Round2 = Round2 - 1
     If Round2 = 1 Then
     Text3.Text = Text3.Text + "[" & Text2 & "]" & "八门遁甲使用时间过长，功力枯竭身亡！"
+    Label19(1) = Val(Label19(1)) + 1                                   ' 自爆身亡算失败
+    Label21(3) = Val(Label21(3)) + 1
+    Call Lv
+    Call win
     Timer1.Enabled = False
+    Command9.Enabled = True
     Exit Sub
 End If
 End If
@@ -595,6 +882,11 @@ Round1 = Round1 - 1
     If Round1 = 1 Then
     Text3.Text = Text3.Text + "[" & Text1 & "]" & "八门遁甲使用时间过长，功力枯竭身亡！"
     Timer1.Enabled = False
+    Command9.Enabled = True
+    Label19(3).Caption = Val(Label19(3)) + 1
+    Label21(1) = Val(Label21(1)) + 1
+    Call Lv02
+    Call fail
     Exit Sub
 End If
 End If
@@ -618,8 +910,62 @@ End Sub
 
 Private Sub Form_Load()
 Dim I
-MsgBox "欢迎登录游客畅玩版，如果想体验全部功能，请注册会员登录~", , "游客您好"
+Dim strsql1 As String
+Dim strsql2 As String
 
+MsgBox "欢迎游戏姓名大乐斗擂台战(PVP)~", , "温馨提示"
+Randomize
+
+Label19(0).Caption = ID
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "连接失败"
+End If
+'         strsql = "select * from zc"                                    '打开表格
+'         Rs.Open strsql, db, 3, 3
+Set Rs = New ADODB.Recordset
+strsql1 = " select * from zc where 账号=" & ID
+Rs.Open strsql1, db, adOpenStatic, adLockReadOnly
+Label19(1).Caption = Rs!胜场
+Label19(2).Caption = Rs!等级
+Label19(3).Caption = Rs!失败
+Label19(4).Caption = Rs!金钱
+fhy = Rs!复活药
+Money = Label19(4).Caption
+
+Set Rs = New ADODB.Recordset
+strsql2 = " select * from zc where 擂主=" & "2"
+Rs.Open strsql2, db, adOpenStatic, adLockReadOnly
+Player2 = Rs!用户名
+Label21(0).Caption = Rs!账号
+Label21(1).Caption = Rs!胜场
+Label21(2).Caption = Rs!等级
+Label21(3).Caption = Rs!失败
+Label21(4).Caption = Rs!金钱
+
+If Label19(1) < 3 Then Lv1 = 1
+If Label19(1) >= 3 And Label19(1) < 10 Then Lv1 = 2
+If Label19(1) >= 10 And Label19(1) < 20 Then Lv1 = 3
+If Label19(1) >= 20 Then Lv1 = 4
+Label19(2) = Lv1
+Money = Val(Label19(4))
+
+If Label21(1) < 3 Then Lv2 = 1
+If Label21(1) >= 3 And Label21(1) < 10 Then Lv2 = 2
+If Label21(1) >= 10 And Label21(1) < 20 Then Lv2 = 3
+If Label21(1) >= 20 Then Lv2 = 4
+Label21(2) = Lv2
+Money2 = Val(Label21(4))
+
+Text1.Text = Trim(Player1)
+Text2.Text = Trim(Player2)
+Text1.Locked = True
+Text2.Locked = True
 Text3.Locked = True
 Text4(0).Locked = True
 Text4(1).Locked = True
@@ -633,8 +979,6 @@ Text5(2).Locked = True
 Text5(3).Locked = True
 Text5(4).Locked = True
 Text5(5).Locked = True
-
-
 a = Int(Rnd * 10)
 b = Int(Rnd * 10)
 Flag = Int(Rnd * 100)
@@ -647,17 +991,17 @@ Next I
 End Sub
 
 Function Skill(Fis1 As Integer, Fis2 As Integer, who As Integer) '攻击方式
-'If Val(Fis1 + a) > Val(Fis2 + b) Then                  转变攻击方法出现的算法
 If SP(2) < 3 And Flag >= 93 And Flag < 100 Then
 e = "使用吸星大法，"
 Select Case who
     Case 2
+    Call fLv(4, Lv1)
     e = e + "[" & Text2 & "]" & "功力被吸走一成"
-    Text4(0).Text = Text4(0) + Val(Text5(0).Text) * 0.1
-    Text4(1).Text = Text4(1) + Val(Text5(1).Text) * 0.1
-    Text4(2).Text = Text4(2) + Val(Text5(2).Text) * 0.1
-    Text4(3).Text = Text4(3) + Val(Text5(3).Text) * 0.1
-    Text4(4).Text = Text4(4) + Val(Text5(4).Text) * 0.1
+    Text4(0).Text = Text4(0) + Val(Text5(0).Text) * f
+    Text4(1).Text = Text4(1) + Val(Text5(1).Text) * f
+    Text4(2).Text = Text4(2) + Val(Text5(2).Text) * f
+    Text4(3).Text = Text4(3) + Val(Text5(3).Text) * f
+    Text4(4).Text = Text4(4) + Val(Text5(4).Text) * f
     Text5(0).Text = Val(Text5(0).Text) * 0.9
     Text5(1).Text = Text5(1) - 1
     Text5(2).Text = Text5(2) - 1
@@ -665,12 +1009,13 @@ Select Case who
     Text5(4).Text = Text5(4) - 1
 
     Case 1
+    Call fLv(4, Lv2)
     e = e + "[" & Text1 & "]" & "功力被吸走一成"
-    Text5(0).Text = Text5(0) + Val(Text4(0).Text) * 0.1
-    Text5(1).Text = Text5(1) + Val(Text4(1).Text) * 0.1
-    Text5(2).Text = Text5(2) + Val(Text4(2).Text) * 0.1
-    Text5(3).Text = Text5(3) + Val(Text4(3).Text) * 0.1
-    Text5(4).Text = Text5(4) + Val(Text4(4).Text) * 0.1
+    Text5(0).Text = Text5(0) + Val(Text4(0).Text) * f
+    Text5(1).Text = Text5(1) + Val(Text4(1).Text) * f
+    Text5(2).Text = Text5(2) + Val(Text4(2).Text) * f
+    Text5(3).Text = Text5(3) + Val(Text4(3).Text) * f
+    Text5(4).Text = Text5(4) + Val(Text4(4).Text) * f
     Text4(0).Text = Val(Text4(0).Text) * 0.9
     Text4(1).Text = Text4(1) - 1
     Text4(2).Text = Text4(2) - 1
@@ -681,13 +1026,14 @@ Exit Function
 
 ElseIf SP(1) < 1 And Flag >= 60 And Flag < 65 Then
 e = "使用八门遁甲，"
-f = Val(Int(Rnd * 100 + 300))
 Select Case who
     Case 2
+    Call fLv(2, Lv1)
     e = e + "[" & Text1 & "]" & "的所有属性值上升" & f & "点"
     Call sx(f, 0, 0)
 
     Case 1
+    Call fLv(2, Lv2)
     e = e + "[" & Text2 & "]" & "的所有属性值上升" & f & "点"
     Call sx(f, 0, 1)
 End Select
@@ -695,16 +1041,15 @@ Exit Function
 
 
 ElseIf Flag >= 75 And Flag < 80 Then
-'a = Int(Rnd * 20)
-'b = Int(Rnd * 20)
 e = "使用九阳神功，"
-f = Val(Int(Rnd * 14 + 1))   '取消失败情况，由10上调为15
 Select Case who
     Case 2
+    Call fLv(1, Lv1)
     e = e + "[" & Text2 & "]" & "的所有属性值下降" & f & "点"
     Call sx(f, 1, 0)
 
     Case 1
+    Call fLv(1, Lv2)
     e = e + "[" & Text1 & "]" & "的所有属性值下降" & f & "点"
     Call sx(f, 1, 1)
 End Select
@@ -712,13 +1057,14 @@ Exit Function
 
 ElseIf Flag >= 80 And Flag < 90 Then
 e = "发起攻击，"
-f = Val(Int(Rnd * 30))
 Select Case who
     Case 2
+    Call fLv(3, Lv1)
     e = e + "[" & Text2 & "]" & "被打晕了，" & "[" & Text1 & "]" & "趁机恢复体力" & f & "点"
     Text4(0).Text = Val(Text4(0).Text + f)
     
     Case 1
+    Call fLv(3, Lv2)
     e = e + "[" & Text1 & "]" & "被打晕了，" & "[" & Text2 & "]" & "趁机恢复体力" & f & "点"
     Text5(0).Text = Val(Text5(0).Text + f)
 End Select
@@ -726,12 +1072,12 @@ Exit Function
 
 Else
 e = "发起攻击，"
-k = Val(Int(Rnd * 30))   '由10上调为30
 Select Case who
     Case 2
+    Call fLv(60, Lv1)
     If gj(0) > fy(1) Then
     e = e + "[" & Text2 & "]" & "受到" & Val(Abs(gj(0) - fy(1)) + k) & "点攻击"
-    Text5(0).Text = Val(Text5(0).Text - Val(Abs(gj(0) - fy(1))) + k)
+    Text5(0).Text = Val(Text5(0).Text - Val(Abs(gj(0) - fy(1))) - k)
     Exit Function
     Else
     e = e + "[" & Text2 & "]" & "受到" & Val(k) & "点攻击"
@@ -740,9 +1086,10 @@ Select Case who
     End If
 
     Case 1
+    Call fLv(60, Lv2)
     If gj(1) > fy(0) Then
     e = e + "[" & Text1 & "]" & "受到" & Val(Abs(gj(1) - fy(0)) + k) & "点攻击"
-    Text4(0).Text = Val(Text4(0).Text - Val(Abs(gj(1) - fy(0))) + k)
+    Text4(0).Text = Val(Text4(0).Text - Val(Abs(gj(1) - fy(0))) - k)
     Exit Function
     Else
     e = e + "[" & Text1 & "]" & "受到" & Val(k) & "点攻击"
@@ -750,6 +1097,59 @@ Select Case who
     Exit Function
     End If
 End Select
+End If
+End Function
+
+Function fLv(K1 As Integer, Lv As Integer) As Integer
+If K1 = 60 Then                                                  '普通攻击
+If Lv = 1 Then k = Int(Rnd * 30)
+If Lv = 2 Then k = Int(Rnd * 25 + 5)
+If Lv >= 3 Then k = Int(Rnd * 30 + 5)
+
+ElseIf K1 = 1 Then                                            '九阳神功
+If Lv1 = 1 Then f = Val(Int(Rnd * 15 + 1))
+If Lv1 = 2 Then f = Val(Int(Rnd * 15 + 2))
+If Lv1 >= 3 Then f = Val(Int(Rnd * 17 + 3))
+
+ElseIf K1 = 2 Then                                            '八门遁甲
+If Lv1 = 1 Then f = Val(Int(Rnd * 101 + 300))
+If Lv1 = 2 Then f = Val(Int(Rnd * 101 + 320))
+If Lv1 >= 3 Then f = Val(Int(Rnd * 101 + 340))
+
+ElseIf K1 = 3 Then                                            '快速治疗
+If Lv1 = 1 Then f = Val(Int(Rnd * 30))
+If Lv1 = 2 Then f = Val(Int(Rnd * 30 + 10))
+If Lv1 >= 3 Then f = Val(Int(Rnd * 30 + 20))
+
+ElseIf K1 = 4 Then                                            '吸星大法
+If Lv1 = 1 Then f = 0.1
+If Lv1 = 2 Then f = 0.11
+If Lv1 >= 3 Then f = 0.12
+
+ElseIf K1 = 5 Then                                        '金蝉脱壳触发几率
+If Lv = 1 Then Jc = 95
+If Lv = 2 Then Jc = 94
+If Lv >= 3 Then Jc = 93
+
+ElseIf K1 = 6 Then                                       '金蝉脱壳回复血量
+If Lv = 1 Then hp0 = 20
+If Lv = 2 Then hp0 = 30
+If Lv >= 3 Then hp0 = 40
+
+ElseIf K1 = 7 Then                                            '回光返照提升属性值
+If Lv = 1 Then f = Val(Int(Rnd * 10))
+If Lv = 2 Then f = Val(Int(Rnd * 13 + 2))
+If Lv >= 3 Then f = Val(Int(Rnd * 15 + 5))
+
+ElseIf K1 = 8 Then                                            '回光返照触发血量
+If Lv = 1 Then hpc1 = 15
+If Lv = 2 Then hpc2 = 17
+If Lv >= 3 Then hpc2 = 20
+
+ElseIf K1 = 9 Then                                            '回光返照触发血量
+If Lv = 1 Then hpc1 = 15
+If Lv = 2 Then hpc2 = 17
+If Lv >= 3 Then hpc2 = 20
 End If
 End Function
 
@@ -795,7 +1195,6 @@ Text5(3).Text = sd(1) + zj
 sd(1) = Val(Text5(3).Text) '速度值
 Text5(4).Text = mz(1) + zj
 mz(1) = Val(Text5(4).Text) '命中值
-
 End If
 
 ElseIf jj = 1 Then
@@ -818,7 +1217,6 @@ Text5(3).Text = sd(1) - zj
 sd(1) = Val(Text5(3).Text) '速度值
 Text5(4).Text = mz(1) - zj
 mz(1) = Val(Text5(4).Text) '命中值
-
 End If
 End If
 
@@ -849,7 +1247,80 @@ Next I
 Name_Do = k + y + n
 End Function
 
+Public Sub Lv()
+If Label19(1) < 3 Then Lv1 = 1
+If Label19(1) >= 3 And Label19(1) < 10 Then Lv1 = 2
+If Label19(1) >= 10 And Label19(1) < 20 Then Lv1 = 3
+If Label19(1) >= 20 Then Lv1 = 4
+Label19(2) = Lv1
+Money = Money + Int(Rnd * 40 + 10)
+Label19(4).Caption = Money
+End Sub
+
+Public Sub Lv02()
+If Label21(1) < 3 Then Lv2 = 1
+If Label21(1) >= 3 And Label21(1) < 10 Then Lv2 = 2
+If Label21(1) >= 10 And Label21(1) < 20 Then Lv2 = 3
+If Label21(1) >= 20 Then Lv2 = 4
+Label21(2) = Lv2
+Money2 = Money2 + Int(Rnd * 40 + 10)
+Label21(4).Caption = Money2
+End Sub
+
+Public Sub win()
+Dim strsql1, strsql2
+MsgBox "恭喜您挑战成功，成为擂主！！奖励金币200，复活药*1", , "恭喜"
+Money = Money + 200
+Label19(4).Caption = Money
+fhy = fhy + 1
+'Set Rs = New ADODB.Recordset
+'strsql1 = " select * from zc where 账号=" & ID
+'Rs.Open strsql1, db, adOpenStatic, adLockReadOnly
+'Rs!擂主 = 2
+Dim a As String
+Dim b As String
+a = "update zc set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',金钱='" & Label19(4) & "',复活药='" & fhy & "',擂主='" & "2" & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
+Call CnSql(a, 2)
+b = "select * from zc where 账号=" & Val(Label19(0))
+Call CnSql(b, 1)
+
+
+'Set Rs = New ADODB.Recordset
+'strsql2 = " select * from zc where 账号=" & Val(Label21(0))
+'Rs.Open strsql2, db, adOpenStatic, adLockReadOnly
+'Rs!擂主 = 0
+Dim a2 As String
+Dim b2 As String
+a2 = "update zc set 胜场= '" & Label21(1) & "',失败='" & Label21(3) & "',金钱='" & Label21(4) & "',擂主='" & "0" & "',等级=" & Val(Label21(2)) & " where 账号=" & Val(Label21(0))
+Call CnSql(a2, 2)
+b2 = "select * from zc where 账号=" & Val(Label21(0))
+Call CnSql(b2, 1)
+End Sub
+
+Public Sub fail()
+MsgBox "很遗憾您挑战失败，请尝试再次挑战！"
+Dim a2 As String
+Dim b2 As String
+a2 = "update zc set 胜场= '" & Label21(1) & "',失败='" & Label21(3) & "',金钱='" & Label21(4) & "',等级=" & Val(Label21(2)) & " where 账号=" & Val(Label21(0))
+Call CnSql(a2, 2)
+b2 = "select * from zc where 账号=" & Val(Label21(0))
+Call CnSql(b2, 1)
+End Sub
+
 Private Sub Form_Unload(Cancel As Integer) '卸载窗体事件
-MsgBox "谢谢游戏，如果您觉得很好玩请注册账号享受更多功能！——Airing", , "温馨提示"
+Dim a As String
+Dim b As String
+a = "update zc set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
+Call CnSql(a, 2)
+b = "select * from zc where 账号=" & Val(Label19(0))
+Call CnSql(b, 1)
+
+Dim a2 As String
+Dim b2 As String
+a2 = "update zc set 胜场= '" & Label21(1) & "',失败='" & Label21(3) & "',金钱='" & Label21(4) & "',等级=" & Val(Label21(2)) & " where 账号=" & Val(Label21(0))
+Call CnSql(a2, 2)
+b2 = "select * from zc where 账号=" & Val(Label21(0))
+Call CnSql(b2, 1)
+
 End Sub
 

@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form9 
    AutoRedraw      =   -1  'True
    BorderStyle     =   3  'Fixed Dialog
@@ -15,53 +14,6 @@ Begin VB.Form Form9
    ScaleWidth      =   12795
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  '窗口缺省
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   375
-      Left            =   600
-      Top             =   6960
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   661
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "宋体"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
-   End
    Begin VB.CommandButton Command8 
       Height          =   180
       Left            =   12000
@@ -87,6 +39,7 @@ Begin VB.Form Form9
    End
    Begin VB.CommandButton Command5 
       Caption         =   "》"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   7080
       TabIndex        =   26
@@ -95,6 +48,7 @@ Begin VB.Form Form9
    End
    Begin VB.CommandButton Command3 
       Caption         =   "《"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   4680
       TabIndex        =   25
@@ -471,6 +425,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
+Dim strsql
 Dim a As Integer '左边随即优先攻击
 Dim b As Integer '右边随即优先攻击
 Dim k As Integer '攻击值数目
@@ -697,19 +654,22 @@ Private Sub Form_Load()
 Dim I
 MsgBox "欢迎游戏姓名大乐斗 v1.4乐斗模式，请输入对手姓名后开始游戏~", , "温馨提示"
 
-'Text6(0).Text = ID
 Label19(0).Caption = ID
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-'Text6(0).DataField = ""
-'Text6(1).DataField = ""
-Label19(0).DataField = ""
-Label19(1).DataField = ""
-Adodc1.Recordset.MoveFirst
-Adodc1.Recordset.Find "账号=" & Label19(0)
-Label19(1).Caption = Adodc1.Recordset!胜场
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "连接失败"
+End If
+'         strsql = "select * from zc"                                    '打开表格
+'         Rs.Open strsql, db, 3, 3
+Set Rs = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & ID
+Rs.Open strsql, db, adOpenStatic, adLockReadOnly
+Label19(1).Caption = Rs!胜场
 
 Text1.Locked = True
 Text3.Locked = True
@@ -725,7 +685,7 @@ Text5(2).Locked = True
 Text5(3).Locked = True
 Text5(4).Locked = True
 Text5(5).Locked = True
-Text1.Text = Player1
+Text1.Text = Trim(Player1)
 a = Int(Rnd * 10)
 b = Int(Rnd * 10)
 Flag = Int(Rnd * 100)

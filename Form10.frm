@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form10 
    Caption         =   "…ÃµÍ"
    ClientHeight    =   4530
@@ -154,53 +153,6 @@ Begin VB.Form Form10
          Width           =   540
       End
    End
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   330
-      Left            =   120
-      Top             =   4200
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   582
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "ÀŒÃÂ"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
-   End
    Begin VB.Label Label1 
       AutoSize        =   -1  'True
       Caption         =   "ID:"
@@ -228,6 +180,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim Connstring
+Dim strsql
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
 Private Sub Command1_Click(Index As Integer)
     Select Case Index
         Case 0: Cmd0
@@ -256,25 +211,27 @@ End Sub
 
 Private Sub Form_Load()
 Label4.Caption = ID
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "◊¢≤·"
-Adodc1.Refresh
-Label2(0).DataField = ""
-Label3.DataField = ""
-Label4.DataField = ""
-'On Error Resume Next
-Adodc1.Recordset.MoveFirst
-Adodc1.Recordset.Find "’À∫≈=" & Label4
-Label3.Caption = Adodc1.Recordset!Ω«Æ
-Label2(0).Caption = Adodc1.Recordset!–°∫Ï“©
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "≥…π¶"
+Else
+MsgBox "¡¨Ω” ß∞‹"
+End If
+Set Rs = New ADODB.Recordset
+strsql = " select * from zc where ’À∫≈=" & ID
+Rs.Open strsql, db, adOpenStatic, adLockReadOnly
+Label3.Caption = Rs!Ω«Æ
+Label2(0).Caption = Rs!–°∫Ï“©
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 Dim a As String
 Dim b As String
-a = "update ◊¢≤· set Ω«Æ= '" & Label3 & "',–°∫Ï“©='" & Label2(0) & "' where ’À∫≈=" & Label4
+a = "update zc set Ω«Æ= '" & Label3 & "',–°∫Ï“©='" & Label2(0) & "' where ’À∫≈=" & Label4
 Call CnSql(a, 2)
-b = "select * from ◊¢≤· where ’À∫≈=" & Label4
+b = "select * from zc where ’À∫≈=" & Label4
 Call CnSql(b, 1)
 End Sub

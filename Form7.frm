@@ -1,9 +1,8 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form7 
    AutoRedraw      =   -1  'True
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "姓名大乐斗 v1.4  试炼之塔"
+   Caption         =   "姓名大乐斗 v1.5  试炼之塔"
    ClientHeight    =   7800
    ClientLeft      =   45
    ClientTop       =   390
@@ -168,53 +167,6 @@ Begin VB.Form Form7
       Top             =   1080
       Width           =   495
    End
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   375
-      Left            =   0
-      Top             =   7440
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   661
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "宋体"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
-   End
    Begin VB.CommandButton Command8 
       Height          =   180
       Left            =   12000
@@ -240,6 +192,7 @@ Begin VB.Form Form7
    End
    Begin VB.CommandButton Command5 
       Caption         =   "》"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   7080
       TabIndex        =   26
@@ -248,6 +201,7 @@ Begin VB.Form Form7
    End
    Begin VB.CommandButton Command3 
       Caption         =   "《"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   4680
       TabIndex        =   25
@@ -741,6 +695,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
 Dim a As Integer '左边随即优先攻击
 Dim b As Integer '右边随即优先攻击
 Dim k As Integer '攻击值数目
@@ -769,7 +725,6 @@ Dim Round1, Round2  '使用八门遁甲死亡倒计时
 Dim R1 As Boolean, R2 As Boolean   '启动死亡倒计时
 Dim SP(0 To 60)       '各技能使用上限
 Dim Connstring
-Dim Rs As ADODB.Recordset '为记录集对象
 
 Private Sub Command1_Click()
 Randomize
@@ -1008,7 +963,7 @@ Else
 If Tur = 1 Then '战斗循环
 If R2 = True Then
 Round2 = Round2 - 1
-    If Round2 = 1 Then
+    If Round2 = 99 Then
     Text3.Text = Text3.Text + "[" & Text2 & "]" & "八门遁甲使用时间过长，功力枯竭身亡！"
     Label19(1) = Label19(1) + 1                                   ' 自爆身亡算失败
     Call win
@@ -1036,7 +991,7 @@ Exit Sub
 ElseIf Tur = 2 Then
 If R1 = True Then
 Round1 = Round1 - 1
-    If Round1 = 1 Then
+    If Round1 = 99 Then
     Text3.Text = Text3.Text + "[" & Text1 & "]" & "八门遁甲使用时间过长，功力枯竭身亡！"
     Timer1.Enabled = False
     Command9.Enabled = True
@@ -1065,33 +1020,31 @@ End Sub
 
 Private Sub Form_Load()
 Dim J
+Dim strsql
 MsgBox "欢迎来到试炼之塔~", , "温馨提示"
 Randomize
 
 Label19(0).Caption = ID
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Label19(0).DataField = ""
-Label19(1).DataField = ""
-Label19(2).DataField = ""
-Label19(3).DataField = ""
-Label19(4).DataField = ""
-Label19(5).DataField = ""
-Label19(6).DataField = ""
-Label19(7).DataField = ""
-'On Error Resume Next
-Adodc1.Recordset.MoveFirst
-Adodc1.Recordset.Find "账号=" & Label19(0)
-Label19(1).Caption = Adodc1.Recordset!胜场
-Label19(2).Caption = Adodc1.Recordset!等级
-Label19(3).Caption = Adodc1.Recordset!失败
-Label19(4).Caption = Adodc1.Recordset!金钱
-Label19(5).Caption = Adodc1.Recordset!试炼之塔
-Label19(6).Caption = Adodc1.Recordset!小红药
-Label19(7).Caption = Adodc1.Recordset!复活药
-Text1.Text = Player1
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "连接失败"
+End If
+Set Rs = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & ID
+Rs.Open strsql, db, adOpenStatic, adLockReadOnly
+Label19(1).Caption = Rs!胜场
+Label19(2).Caption = Rs!等级
+Label19(3).Caption = Rs!失败
+Label19(4).Caption = Rs!金钱
+Label19(5).Caption = Rs!试炼之塔
+Label19(6).Caption = Rs!小红药
+Label19(7).Caption = Rs!复活药
+Text1.Text = Trim(Player1)
 Dim lngReturn As Long
 Dim I
 
@@ -1191,20 +1144,20 @@ Select Case who
 End Select
 Exit Function
 
-ElseIf SP(1) < 1 And Flag >= 60 And Flag < 65 Then
-e = "使用八门遁甲，"
-Select Case who
-    Case 2
-    Call fLv(2, Lv1)
-    e = e + "[" & Text1 & "]" & "的所有属性值上升" & f & "点"
-    Call sx(f, 0, 0)
-
-    Case 1
-    Call fLv(2, Lv2)
-    e = e + "[" & Text2 & "]" & "的所有属性值上升" & f & "点"
-    Call sx(f, 0, 1)
-End Select
-Exit Function
+'ElseIf SP(1) < 1 And Flag >= 60 And Flag < 65 Then
+'e = "使用八门遁甲，"
+'Select Case who
+'    Case 2
+'    Call fLv(2, Lv1)
+'    e = e + "[" & Text1 & "]" & "的所有属性值上升" & f & "点"
+'    Call sx(f, 0, 0)
+'
+'    Case 1
+'    Call fLv(2, Lv2)
+'    e = e + "[" & Text2 & "]" & "的所有属性值上升" & f & "点"
+'    Call sx(f, 0, 1)
+'End Select
+'Exit Function
 
 
 ElseIf Flag >= 75 And Flag < 80 Then
@@ -1412,7 +1365,14 @@ Public Sub win()
 Label19(5).Caption = Val(Label19(5)) + 1
 slta = Label19(5)
 If slta <= 10 Then
-MsgBox "恭喜您挑战成功，进入下一层"
+MsgBox "恭喜您挑战成功，进入下一层", , "恭喜"
+    If slta > 3 Then
+        MsgBox "恭喜您，您获得了金币*200，并且回复状态 HP+300", , "恭喜"
+        Money = Money + 200
+        Label19(4).Caption = Money
+        Text4(0).Text = Val(Text4(0).Text) + 300
+        Call Save
+    End If
 If slta = 1 Then Call slta1
 If slta = 2 Then Call slta2
 If slta = 3 Then Call slta3
@@ -1424,10 +1384,10 @@ If slta = 8 Then Call slta8
 If slta = 9 Then Call slta9
 If slta = 10 Then Call slta10
 Else
-MsgBox "恭喜您挑战成功，奖励5000金币，小红药10个！复活药（绝版）1个！"
+MsgBox "恭喜您挑战成功，奖励5000金币，小红药10个！复活药（绝版）3个！", , "恭喜"
 Label19(5) = 1
 Label19(6) = Label19(6) + 10
-Label19(7) = Label19(7) + 1
+Label19(7) = Label19(7) + 3
 Money = Money + 5000
 Label19(4).Caption = Money
 Call Save
@@ -1438,8 +1398,17 @@ Public Sub fail()
 If MsgBox("是否使用复活药", vbYesNo, "提示") = vbYes Then
 Call Cmd1
 Else
-MsgBox "挑战失败，掉回第一层"
+MsgBox "挑战失败，掉回第一层", , "提示"
 Label19(5) = 1
+If Money >= 100 And MsgBox("您确定花费100金币购买挑战资格吗？", vbYesNo, "提示") = vbYes Then
+    Money = Money - 100
+    Unload Me
+    Form7.Show
+Else
+    MsgBox "您没有挑战资格！", , "提示"
+    Unload Me
+    Form1.Show
+    End If
 Call Save
 Call Form_Load
 End If
@@ -1544,10 +1513,9 @@ End Sub
 Private Sub Save()
 Dim a As String
 Dim b As String
-'a = "update 注册 set 胜场= '" & Label19(1) & "' where 账号=" & Val(Label19(0))
-a = "update 注册 set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',试炼之塔='" & Label19(5) & "',小红药='" & Label19(6) & "',复活药='" & Label19(7) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
+a = "update zc set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',试炼之塔='" & Label19(5) & "',小红药='" & Label19(6) & "',复活药='" & Label19(7) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
 Call CnSql(a, 2)
-b = "select * from 注册 where 账号=" & Val(Label19(0))
+b = "select * from zc where 账号=" & Val(Label19(0))
 Call CnSql(b, 1)
 End Sub
 

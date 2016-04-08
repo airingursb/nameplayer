@@ -1,9 +1,8 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form1 
    AutoRedraw      =   -1  'True
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "姓名大乐斗 v1.4"
+   Caption         =   "姓名大乐斗 v1.5"
    ClientHeight    =   7800
    ClientLeft      =   45
    ClientTop       =   390
@@ -15,12 +14,28 @@ Begin VB.Form Form1
    ScaleWidth      =   12795
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  '窗口缺省
+   Begin VB.CommandButton Command13 
+      Caption         =   "决斗场（PVP）"
+      Height          =   495
+      Left            =   10320
+      TabIndex        =   55
+      Top             =   6000
+      Width           =   1335
+   End
+   Begin VB.CommandButton Command12 
+      Caption         =   "擂台战（PVP）"
+      Height          =   495
+      Left            =   8880
+      TabIndex        =   54
+      Top             =   6000
+      Width           =   1335
+   End
    Begin VB.CommandButton Command11 
       Caption         =   "试炼之塔"
       Height          =   495
       Left            =   8880
       TabIndex        =   53
-      Top             =   6840
+      Top             =   7200
       Width           =   1335
    End
    Begin VB.CommandButton Command10 
@@ -28,7 +43,7 @@ Begin VB.Form Form1
       Height          =   495
       Left            =   8880
       TabIndex        =   52
-      Top             =   6240
+      Top             =   6600
       Width           =   1335
    End
    Begin VB.CommandButton Command9 
@@ -47,53 +62,6 @@ Begin VB.Form Form1
       TabIndex        =   44
       Top             =   1080
       Width           =   495
-   End
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   375
-      Left            =   0
-      Top             =   7440
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   661
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "宋体"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
    End
    Begin VB.CommandButton Command8 
       Height          =   180
@@ -120,6 +88,7 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "》"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   7080
       TabIndex        =   26
@@ -128,6 +97,7 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command3 
       Caption         =   "《"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   4680
       TabIndex        =   25
@@ -271,7 +241,6 @@ Begin VB.Form Form1
    Begin VB.TextBox Text1 
       Height          =   375
       Left            =   120
-      Locked          =   -1  'True
       TabIndex        =   7
       Top             =   720
       Width           =   855
@@ -564,6 +533,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
+Dim Leizhu
 Dim a As Integer '左边随即优先攻击
 Dim b As Integer '右边随即优先攻击
 Dim k As Integer '攻击值数目
@@ -592,7 +564,6 @@ Dim Round1, Round2  '使用八门遁甲死亡倒计时
 Dim R1 As Boolean, R2 As Boolean   '启动死亡倒计时
 Dim SP(0 To 60)       '各技能使用上限
 Dim Connstring
-Dim Rs As ADODB.Recordset '为记录集对象
 
 Private Sub Command1_Click()
 Randomize
@@ -674,8 +645,41 @@ Form9.Show
 End Sub
 
 Private Sub Command11_Click()
+If Money >= 100 And MsgBox("您确定花费100金币购买门票吗？", vbYesNo, "提示") = vbYes Then
+    Money = Money - 100
+    Label19(4).Caption = Money
+    Unload Me
+    Form7.Show
+Else
+    MsgBox "您没有挑战资格！", , "提示"
+End If
+End Sub
+
+Private Sub Command12_Click()
+If Leizhu = 2 Then
+MsgBox "您目前已经是擂主，不需要挑战！"
+Else
 Unload Me
-Form7.Show
+Form11.Show
+End If
+End Sub
+
+Private Sub Command13_Click()
+ID2 = InputBox("请输入对方的ID", "提示")
+Dim rc As ADODB.Recordset
+Dim strsql As String
+Set rc = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & ID2
+rc.Open strsql, db, adOpenStatic, adLockReadOnly
+    If rc.EOF Then
+        MsgBox "连接失败！找不到该玩家！", vbCritical, "提示"
+    Else
+        MsgBox "连接成功，即将开始决斗", , "提示"
+        Set rc = Nothing
+        'rc.Close
+    Unload Me
+    Form13.Show
+End If
 End Sub
 
 Private Sub Command2_Click()
@@ -739,6 +743,7 @@ MsgBox "对手名至少为两个字！请重新输入！"
 Text2.Text = ""
 End If
 End Sub
+
 Private Sub Timer1_Timer()
 a = Int(Rnd * 20)
 b = Int(Rnd * 20)
@@ -847,26 +852,30 @@ End Sub
 
 Private Sub Form_Load()
 Dim I
-MsgBox "欢迎游戏姓名大乐斗 v1.4，请输入对手姓名后开始游戏~", , "温馨提示"
+Dim strsql As String
+MsgBox "欢迎游戏姓名大乐斗 v1.5，请输入对手姓名后开始游戏~", , "温馨提示"
 Randomize
 
 Label19(0).Caption = ID
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Label19(0).DataField = ""
-Label19(1).DataField = ""
-Label19(2).DataField = ""
-Label19(3).DataField = ""
-Label19(4).DataField = ""
-'On Error Resume Next
-Adodc1.Recordset.MoveFirst
-Adodc1.Recordset.Find "账号=" & Label19(0)
-Label19(1).Caption = Adodc1.Recordset!胜场
-Label19(2).Caption = Adodc1.Recordset!等级
-Label19(3).Caption = Adodc1.Recordset!失败
-Label19(4).Caption = Adodc1.Recordset!金钱
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "连接失败"
+End If
+'         strsql = "select * from zc"                                    '打开表格
+'         Rs.Open strsql, db, 3, 3
+Set Rs = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & ID
+Rs.Open strsql, db, adOpenStatic, adLockReadOnly
+Label19(1).Caption = Rs!胜场
+Label19(2).Caption = Rs!等级
+Label19(3).Caption = Rs!失败
+Label19(4).Caption = Rs!金钱
+Leizhu = Rs!擂主
 
 If Label19(1) < 3 Then Lv1 = 1
 If Label19(1) >= 3 And Label19(1) < 10 Then Lv1 = 2
@@ -876,6 +885,7 @@ Label19(2) = Lv1
 Lv2 = 1
 Money = Val(Label19(4))
 
+Text1.Text = Trim(Player1)
 Text1.Locked = True
 Text3.Locked = True
 Text4(0).Locked = True
@@ -890,7 +900,6 @@ Text5(2).Locked = True
 Text5(3).Locked = True
 Text5(4).Locked = True
 Text5(5).Locked = True
-Text1.Text = Player1
 a = Int(Rnd * 10)
 b = Int(Rnd * 10)
 Flag = Int(Rnd * 100)
@@ -1172,12 +1181,10 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer) '卸载窗体事件
 Dim a As String
 Dim b As String
-'a = "update 注册 set 胜场= '" & Label19(1) & "' where 账号=" & Val(Label19(0))
-a = "update 注册 set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
+a = "update zc set 胜场= '" & Label19(1) & "',失败='" & Label19(3) & "',金钱='" & Label19(4) & "',等级=" & Val(Label19(2)) & " where 账号=" & Val(Label19(0))
 Call CnSql(a, 2)
-b = "select * from 注册 where 账号=" & Val(Label19(0))
+b = "select * from zc where 账号=" & Val(Label19(0))
 Call CnSql(b, 1)
-
 End Sub
 
 

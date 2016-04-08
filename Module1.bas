@@ -1,7 +1,7 @@
 Attribute VB_Name = "Module1"
 Option Explicit
-Public Player1
-Public ID, Money
+Public Player1, Player2
+Public ID, Money, ID2
 Public Lv1 As Integer
 Public Lv2 As Integer
 
@@ -13,8 +13,8 @@ Public Sub CnSql(Sql As String, TP As Long)
 On Error Resume Next
     Set Cn = New ADODB.Connection
     Set Rs = New ADODB.Recordset
-    Cn.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-    Cn.Open
+Cn.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+Cn.Open
     If TP = 1 Then
         Rs.Open Sql, Cn, 1, 1
         Set MyRs = Rs

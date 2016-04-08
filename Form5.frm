@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form Form5 
    Caption         =   "找回密码"
    ClientHeight    =   3525
@@ -25,53 +24,6 @@ Begin VB.Form Form5
       TabIndex        =   7
       Top             =   2880
       Width           =   855
-   End
-   Begin MSAdodcLib.Adodc Adodc1 
-      Height          =   330
-      Left            =   0
-      Top             =   0
-      Visible         =   0   'False
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   582
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "宋体"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
    End
    Begin VB.TextBox Text3 
       DataSource      =   "Adodc1"
@@ -150,24 +102,24 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim Connstring
-
+Dim db As ADODB.Connection
+Dim Rs As ADODB.Recordset
 Private Sub Command1_Click()
-Dim Name As String, Num As String
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Adodc1.Recordset.Find "账号=" & Text1.Text
-If Text2.Text = "" Then
-MsgBox "找不回密码"
-Else
-If Text3.Text = Adodc1.Recordset!答案 Then
-MsgBox "密码是" & Adodc1.Recordset!密码
-Unload Me
-Form4.Show
-Else
-MsgBox "答案错误"
+Dim rc As ADODB.Recordset
+Dim pass As String
+Dim strsql As String
+Set rc = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & Text1 & "  and 答案 ='" & Text3.Text & "' "
+rc.Open strsql, db, adOpenStatic, adLockReadOnly
+     If rc.EOF Then
+         MsgBox "您的输入有误", vbCritical, "提示"
+   Else
+         pass = rc.Fields("密码").Value
+         MsgBox "你的密码是 " & pass & " 请妥善保管！", vbInformation, "密码提示"
+         Set rc = Nothing
+         'rc.Close
+         pass = ""
 End If
-End If
-Text3.Text = ""
 End Sub
 
 Private Sub Command2_Click()
@@ -176,34 +128,30 @@ Form4.Show
 End Sub
 
 Private Sub Form_Load()
-Connstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\zc.mdb;Jet OLEDB:Database password=123"
-Adodc1.ConnectionString = Connstring
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Text1.DataField = ""
-Text2.DataField = ""
-Text1.Text = ""
-Text2.Text = ""
-Adodc1.Recordset.MoveFirst
-End Sub
-
-
-Private Sub Text1_LostFocus()
-Dim Name As String, Num As String
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Adodc1.Recordset.Find "账号=" & Text1.Text
-If Adodc1.Recordset.EOF Then
-MsgBox "账号不存在"
-Text1.Text = ""
-Text1.SetFocus
+Set db = New ADODB.Connection
+Set Rs = New ADODB.Recordset
+db.ConnectionString = "Provider=SQLOLEDB.1;Password=1123581321;Persist Security Info=True;User ID=hds1010886;Initial Catalog=hds1010886_db;Data Source=hds-101.hichina.com"
+db.Open
+If db.State = adStateOpen Then
+'MsgBox "成功"
+Else
+MsgBox "连接失败"
 End If
 End Sub
 
-Private Sub Text2_GotFocus()
-Dim Name As String, Num As String
-Adodc1.RecordSource = "注册"
-Adodc1.Refresh
-Adodc1.Recordset.Find "账号=" & Text1.Text
-Text2.Text = Adodc1.Recordset!密码提示
+Private Sub Text1_LostFocus()
+Dim rc As ADODB.Recordset
+Dim pass As String
+Dim strsql As String
+Set rc = New ADODB.Recordset
+strsql = " select * from zc where 账号=" & Text1
+rc.Open strsql, db, adOpenStatic, adLockReadOnly
+     If rc.EOF Then
+         MsgBox "查无此号", vbCritical, "提示"
+   Else
+         Text2.Text = rc.Fields("密码提示").Value
+         Set rc = Nothing
+         'rc.Close
+End If
 End Sub
+
